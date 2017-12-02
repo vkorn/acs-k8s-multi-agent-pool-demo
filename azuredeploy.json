@@ -1,0 +1,404 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "resourceName": {
+            "type": "string",
+            "metadata": {
+                "description": "The name of the ACS resource."
+            }
+        },
+        "masterCount": {
+            "defaultValue": 1,
+            "allowedValues": [
+                1,
+                3,
+                5
+            ],
+            "type": "int",
+            "metadata": {
+                "description": "The number of masters for the cluster."
+            }
+        },
+        "masterVMSize": {
+            "defaultValue": "Standard_D2_v2",
+            "allowedValues": [
+                "Standard_A10",
+                "Standard_A11",
+                "Standard_A2",
+                "Standard_A2_v2",
+                "Standard_A2m_v2",
+                "Standard_A3",
+                "Standard_A4",
+                "Standard_A4_v2",
+                "Standard_A4m_v2",
+                "Standard_A5",
+                "Standard_A6",
+                "Standard_A7",
+                "Standard_A8",
+                "Standard_A8_v2",
+                "Standard_A8m_v2",
+                "Standard_A9",
+                "Standard_B1ms",
+                "Standard_B1s",
+                "Standard_B2ms",
+                "Standard_B2s",
+                "Standard_B4ms",
+                "Standard_B8ms",
+                "Standard_D11",
+                "Standard_D11_v2",
+                "Standard_D12",
+                "Standard_D12_v2",
+                "Standard_D13",
+                "Standard_D13_v2",
+                "Standard_D14",
+                "Standard_D14_v2",
+                "Standard_D15_v2",
+                "Standard_D2",
+                "Standard_D2_v2",
+                "Standard_D3",
+                "Standard_D3_v2",
+                "Standard_D4",
+                "Standard_D4_v2",
+                "Standard_D5_v2",
+                "Standard_DS11",
+                "Standard_DS11_v2",
+                "Standard_DS12",
+                "Standard_DS12_v2",
+                "Standard_DS13",
+                "Standard_DS13_v2",
+                "Standard_DS14",
+                "Standard_DS14_v2",
+                "Standard_DS15_v2",
+                "Standard_DS2",
+                "Standard_DS2_v2",
+                "Standard_DS3",
+                "Standard_DS3_v2",
+                "Standard_DS4",
+                "Standard_DS4_v2",
+                "Standard_DS5_v2",
+                "Standard_F16",
+                "Standard_F16s",
+                "Standard_F2",
+                "Standard_F2s",
+                "Standard_F4",
+                "Standard_F4s",
+                "Standard_F8",
+                "Standard_F8s",
+                "Standard_G1",
+                "Standard_G2"
+            ],
+            "type": "string",
+            "metadata": {
+                "description": "The size of the Master (Linux) Virtual Machines."
+            }
+        },
+        "windowsAgentCount": {
+            "defaultValue": 1,
+            "minValue": 1,
+            "maxValue": 100,
+            "type": "int",
+            "metadata": {
+                "description": "The number of agents for the Windows agent pool.  This value can be from 1 to 100."
+            }
+        },
+        "windowsAgentVMSize": {
+            "defaultValue": "Standard_D2_v2",
+            "allowedValues": [
+                "Standard_A10",
+                "Standard_A11",
+                "Standard_A2",
+                "Standard_A2_v2",
+                "Standard_A2m_v2",
+                "Standard_A3",
+                "Standard_A4",
+                "Standard_A4_v2",
+                "Standard_A4m_v2",
+                "Standard_A5",
+                "Standard_A6",
+                "Standard_A7",
+                "Standard_A8",
+                "Standard_A8_v2",
+                "Standard_A8m_v2",
+                "Standard_A9",
+                "Standard_B1ms",
+                "Standard_B1s",
+                "Standard_B2ms",
+                "Standard_B2s",
+                "Standard_B4ms",
+                "Standard_B8ms",
+                "Standard_D11",
+                "Standard_D11_v2",
+                "Standard_D12",
+                "Standard_D12_v2",
+                "Standard_D13",
+                "Standard_D13_v2",
+                "Standard_D14",
+                "Standard_D14_v2",
+                "Standard_D15_v2",
+                "Standard_D2",
+                "Standard_D2_v2",
+                "Standard_D3",
+                "Standard_D3_v2",
+                "Standard_D4",
+                "Standard_D4_v2",
+                "Standard_D5_v2",
+                "Standard_DS11",
+                "Standard_DS11_v2",
+                "Standard_DS12",
+                "Standard_DS12_v2",
+                "Standard_DS13",
+                "Standard_DS13_v2",
+                "Standard_DS14",
+                "Standard_DS14_v2",
+                "Standard_DS15_v2",
+                "Standard_DS2",
+                "Standard_DS2_v2",
+                "Standard_DS3",
+                "Standard_DS3_v2",
+                "Standard_DS4",
+                "Standard_DS4_v2",
+                "Standard_DS5_v2",
+                "Standard_F16",
+                "Standard_F16s",
+                "Standard_F2",
+                "Standard_F2s",
+                "Standard_F4",
+                "Standard_F4s",
+                "Standard_F8",
+                "Standard_F8s",
+                "Standard_G1",
+                "Standard_G2"
+            ],
+            "type": "string",
+            "metadata": {
+                "description": "The size of the Windows Virtual Machines."
+            }
+        },
+        "linuxAgentCount": {
+            "defaultValue": 1,
+            "minValue": 1,
+            "maxValue": 100,
+            "type": "int",
+            "metadata": {
+                "description": "The number of agents for the Linux agent pool.  This value can be from 1 to 100."
+            }
+        },
+        "linuxAgentVMSize": {
+            "defaultValue": "Standard_D2_v2",
+            "allowedValues": [
+                "Standard_A10",
+                "Standard_A11",
+                "Standard_A2",
+                "Standard_A2_v2",
+                "Standard_A2m_v2",
+                "Standard_A3",
+                "Standard_A4",
+                "Standard_A4_v2",
+                "Standard_A4m_v2",
+                "Standard_A5",
+                "Standard_A6",
+                "Standard_A7",
+                "Standard_A8",
+                "Standard_A8_v2",
+                "Standard_A8m_v2",
+                "Standard_A9",
+                "Standard_B1ms",
+                "Standard_B1s",
+                "Standard_B2ms",
+                "Standard_B2s",
+                "Standard_B4ms",
+                "Standard_B8ms",
+                "Standard_D11",
+                "Standard_D11_v2",
+                "Standard_D12",
+                "Standard_D12_v2",
+                "Standard_D13",
+                "Standard_D13_v2",
+                "Standard_D14",
+                "Standard_D14_v2",
+                "Standard_D15_v2",
+                "Standard_D2",
+                "Standard_D2_v2",
+                "Standard_D3",
+                "Standard_D3_v2",
+                "Standard_D4",
+                "Standard_D4_v2",
+                "Standard_D5_v2",
+                "Standard_DS11",
+                "Standard_DS11_v2",
+                "Standard_DS12",
+                "Standard_DS12_v2",
+                "Standard_DS13",
+                "Standard_DS13_v2",
+                "Standard_DS14",
+                "Standard_DS14_v2",
+                "Standard_DS15_v2",
+                "Standard_DS2",
+                "Standard_DS2_v2",
+                "Standard_DS3",
+                "Standard_DS3_v2",
+                "Standard_DS4",
+                "Standard_DS4_v2",
+                "Standard_DS5_v2",
+                "Standard_F16",
+                "Standard_F16s",
+                "Standard_F2",
+                "Standard_F2s",
+                "Standard_F4",
+                "Standard_F4s",
+                "Standard_F8",
+                "Standard_F8s",
+                "Standard_G1",
+                "Standard_G2"
+            ],
+            "type": "string",
+            "metadata": {
+                "description": "The size of the Linux Virtual Machines."
+            }
+        },
+        "windowsAgentAdminUsername": {
+            "defaultValue": "azureuser",
+            "type": "string",
+            "metadata": {
+                "description": "User name for the Windows Agent Node Virtual Machines."
+            }
+        },
+        "windowsAgentAdminPassword": {
+            "defaultValue": "",
+            "type": "securestring",
+            "metadata": {
+                "description": "Password for the Windows Agent Node Virtual Machines"
+            }
+        },
+        "linuxAdminUsername": {
+            "defaultValue": "azureuser",
+            "type": "string",
+            "metadata": {
+                "description": "User name for the Linux Agent Node Virtual Machines."
+            }
+        },
+        "sshRSAPublicKey": {
+            "type": "string",
+            "metadata": {
+                "description": "Configure all linux machines with the SSH RSA public key string.  Your key should include three parts, for example 'ssh-rsa AAAAB...snip...UcyupgH azureuser@linuxvm'"
+            }
+        },
+        "servicePrincipalClientId": {
+            "defaultValue": "",
+            "type": "string",
+            "metadata": {
+                "description": "Client ID (used by cloudprovider)"
+            }
+        },
+        "servicePrincipalClientSecret": {
+            "defaultValue": "",
+            "type": "securestring",
+            "metadata": {
+                "description": "The Service Principal Client Secret."
+            }
+        },
+        "enableDiagnostics": {
+            "defaultValue": false,
+            "type": "bool",
+            "metadata": {
+                "description": "Enable or disable VM diagnostics."
+            }
+        },
+        "ukRegion": {
+            "defaultValue": false,
+            "type": "bool",
+            "metadata": {
+                "description": "True if the region is uksouth or ukwest."
+            }
+        }
+    },
+    "variables": {
+        "orchestratorType": "Kubernetes",
+        "resourceName": "[parameters('resourceName')]",
+        "masterDnsNamePrefix": "[concat(parameters('resourceName'), 'mgmt')]",
+        "agentDnsNamePrefix": "[concat(parameters('resourceName'), 'agents')]",
+        "agentsEndpointDNSNamePrefix": "[variables('agentDnsNamePrefix')]",
+        "mastersEndpointDNSNamePrefix": "[variables('masterDnsNamePrefix')]",
+        "sshRSAPublicKey": "[parameters('sshRSAPublicKey')]",
+        "enableDiagnostics": "[parameters('enableDiagnostics')]",
+        "servicePrincipalField": {
+            "ClientId": "[parameters('servicePrincipalClientId')]",
+            "Secret": "[parameters('servicePrincipalClientSecret')]"
+        },
+        "isUK": "[string(parameters('ukRegion'))]",
+        "windowsProfileField": {
+            "adminUsername": "[parameters('windowsAgentAdminUsername')]",
+            "adminPassword": "[parameters('windowsAgentAdminPassword')]"
+        },
+        "diagnosticProfileFields": {
+            "True": null,
+            "False": {
+                "vmDiagnostics": {
+                    "enabled": "[variables('enableDiagnostics')]"
+                }
+            }
+        }
+    },
+    "resources": [
+        {
+            "type": "Microsoft.ContainerService/containerServices",
+            "name": "[variables('resourceName')]",
+            "apiVersion": "2017-01-31",
+            "location": "[resourceGroup().location]",
+            "properties": {
+                "orchestratorProfile": {
+                    "orchestratorType": "[variables('orchestratorType')]"
+                },
+                "masterProfile": {
+                    "count": "[parameters('masterCount')]",
+                    "dnsPrefix": "[variables('mastersEndpointDNSNamePrefix')]",
+                    "vmSize": "[parameters('masterVMSize')]"
+                },
+                "agentPoolProfiles": [
+                    {
+                        "name": "winpool",
+                        "count": "[parameters('windowsAgentCount')]",
+                        "vmSize": "[parameters('windowsAgentVMSize')]",
+                        "dnsPrefix": "[variables('agentsEndpointDNSNamePrefix')]",
+                        "osType": "Windows"
+                    },
+                    {
+                        "name": "linuxpool",
+                        "count": "[parameters('linuxAgentCount')]",
+                        "vmSize": "[parameters('linuxAgentVMSize')]",
+                        "dnsPrefix": "[variables('agentsEndpointDNSNamePrefix')]",
+                        "osType": "Linux"
+                    }
+                ],
+                "diagnosticsProfile": "[variables('diagnosticProfileFields')[variables('isUK')]]",
+                "linuxProfile": {
+                    "adminUsername": "[parameters('linuxAdminUsername')]",
+                    "ssh": {
+                        "publicKeys": [
+                            {
+                                "keyData": "[variables('sshRSAPublicKey')]"
+                            }
+                        ]
+                    }
+                },
+                "windowsProfile": "[variables('windowsProfileField')]",
+                "servicePrincipalProfile": "[variables('servicePrincipalField')]"
+            }
+        }
+    ],
+    "outputs": {
+        "masterFQDN": {
+            "type": "string",
+            "value": "[reference(concat('Microsoft.ContainerService/containerServices/', variables('resourceName'))).masterProfile.fqdn]"
+        },
+        "sshMaster0": {
+            "type": "string",
+            "value": "[concat('ssh ', parameters('linuxAdminUsername'), '@', reference(concat('Microsoft.ContainerService/containerServices/', variables('resourceName'))).masterProfile.fqdn, ' -A -p 2200')]"
+        },
+        "agentFQDN": {
+            "type": "string",
+            "value": "[reference(concat('Microsoft.ContainerService/containerServices/', variables('resourceName'))).agentPoolProfiles[0].fqdn]"
+        }
+    }
+}
