@@ -8,6 +8,13 @@
                 "description": "The name of the ACS resource."
             }
         },
+        "enableDiagnostics": {
+            "defaultValue": false,
+            "type": "bool",
+            "metadata": {
+                "description": "Enable or disable VM diagnostics."
+            }
+        },
         "masterCount": {
             "defaultValue": 1,
             "allowedValues": [
@@ -296,13 +303,6 @@
             "type": "securestring",
             "metadata": {
                 "description": "The Service Principal Client Secret."
-            }
-        },
-        "enableDiagnostics": {
-            "defaultValue": false,
-            "type": "bool",
-            "metadata": {
-                "description": "Enable or disable VM diagnostics."
             }
         },
         "ukRegion": {
