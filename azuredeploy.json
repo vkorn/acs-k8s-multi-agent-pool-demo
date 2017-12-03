@@ -8,12 +8,20 @@
                 "description": "The name of the ACS resource."
             }
         },
-        "enableDiagnostics": {
-            "defaultValue": false,
-            "type": "bool",
-            "metadata": {
-                "description": "Enable or disable VM diagnostics."
-            }
+        "location": {
+            "defaultValue": "uswest2",
+            "type": "string",
+            "allowedValues": [
+                "ukwest",
+                "uksouth",
+                "westcentralus",
+                "westus2",
+                "canadaeast",
+                "canadacentral",
+                "westindia",
+                "southindia",
+                "centralindia"
+            ]
         },
         "masterCount": {
             "defaultValue": 1,
@@ -305,6 +313,13 @@
                 "description": "The Service Principal Client Secret."
             }
         },
+        "enableDiagnostics": {
+            "defaultValue": false,
+            "type": "bool",
+            "metadata": {
+                "description": "Enable or disable VM diagnostics."
+            }
+        },
         "ukRegion": {
             "defaultValue": false,
             "type": "bool",
@@ -345,7 +360,7 @@
             "type": "Microsoft.ContainerService/containerServices",
             "name": "[variables('resourceName')]",
             "apiVersion": "2017-01-31",
-            "location": "[resourceGroup().location]",
+            "location": "[parameters('location')]",
             "properties": {
                 "orchestratorProfile": {
                     "orchestratorType": "[variables('orchestratorType')]"
