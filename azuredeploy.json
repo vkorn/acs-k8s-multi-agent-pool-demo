@@ -280,7 +280,6 @@
             }
         },
         "windowsAgentAdminPassword": {
-            "defaultValue": "",
             "type": "securestring",
             "metadata": {
                 "description": "Password for the Windows Agent Node Virtual Machines"
@@ -300,14 +299,12 @@
             }
         },
         "servicePrincipalClientId": {
-            "defaultValue": "",
             "type": "string",
             "metadata": {
                 "description": "Client ID (used by cloudprovider)"
             }
         },
         "servicePrincipalClientSecret": {
-            "defaultValue": "",
             "type": "securestring",
             "metadata": {
                 "description": "The Service Principal Client Secret."
